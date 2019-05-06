@@ -1,4 +1,4 @@
-package com.example.easyaccess;
+package com.eci.cosw.easyaccess;
 
 import org.junit.Test;
 
