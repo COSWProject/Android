@@ -10,7 +10,7 @@
     <string name="login_empty">Fill email and password</string>
     <string name="net_error">Network error</string>
     <string name="bad_login">Email or password incorrect</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">EasyAccess</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -24,5 +24,6 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string name="title_activity_register">Register</string>
 
 </resources>
