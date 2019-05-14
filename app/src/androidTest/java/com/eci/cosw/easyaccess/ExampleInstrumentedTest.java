@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.easyaccess", appContext.getPackageName());
+        assertEquals("com.eci.cosw.easyaccess", appContext.getPackageName());
     }
 }
