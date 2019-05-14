@@ -15,13 +15,13 @@
         <activity
             android:name=".activity.MainCompanyActivity"
             android:label="@string/title_activity_main_company"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".activity.RegisterActivity"
             android:label="Register" />
         <activity
             android:name=".activity.MainUserActivity"
-            android:label="@string/title_activity_main"
+            android:label="Meetings"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
