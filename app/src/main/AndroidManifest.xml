@@ -13,6 +13,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.MainCompanyActivity"
+            android:label="@string/title_activity_main_company"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".activity.RegisterActivity"
             android:label="Register" />
         <activity
