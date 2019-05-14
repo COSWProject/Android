@@ -6,16 +6,17 @@ public class User {
     private String email;
     private String password;
     private int mobilePhone;
-    private String occupation;
     private String city;
+    private String rol;
 
-    public User(String name, String email, String password, int mobilePhone, String occupation, String city) {
+    public User(String name, String email, String password, int mobilePhone,
+                String city, String rol) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.mobilePhone = mobilePhone;
-        this.occupation = occupation;
         this.city = city;
+        this.rol = rol;
     }
 
     public String getName() {
@@ -50,20 +51,20 @@ public class User {
         this.mobilePhone = mobilePhone;
     }
 
-    public String getOccupation() {
-        return occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
-
     public String getCity() {
         return city;
     }
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     @Override
@@ -73,7 +74,6 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", mobilePhone=" + mobilePhone +
-                ", occupation='" + occupation + '\'' +
                 ", city='" + city + '\'' +
                 '}';
     }
