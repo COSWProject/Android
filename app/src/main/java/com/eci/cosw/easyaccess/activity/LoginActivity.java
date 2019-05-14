@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.eci.cosw.easyaccess.R;
 import com.eci.cosw.easyaccess.model.Login;
 import com.eci.cosw.easyaccess.model.Token;
+import com.eci.cosw.easyaccess.model.User;
 import com.eci.cosw.easyaccess.service.AuthService;
+import com.eci.cosw.easyaccess.service.UserService;
 import com.eci.cosw.easyaccess.util.RetrofitHttp;
 import com.eci.cosw.easyaccess.util.SharedPreference;
 import com.google.android.material.snackbar.Snackbar;
@@ -24,6 +26,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     private static AuthService authService;
+    private static UserService userService;
     private final ExecutorService executorService =
             Executors.newFixedThreadPool(1);
     private SharedPreference sharedPreference;
@@ -69,17 +72,25 @@ public class LoginActivity extends AppCompatActivity {
             public void run() {
                 Login login = new Login(email, password);
                 try {
-                    Response<Token> tokenResponse = authService.login(login).execute();
+                    Response<Token> tokenResponse = authService.loginUser(login).execute();
+                    Token token = tokenResponse.body();
 
                     if (tokenResponse.isSuccessful()) {
-                        Token token = tokenResponse.body();
+                        obtainToken(tokenResponse, email);
 
-                        sharedPreference.save(TOKEN_KEY, token.getAccessToken());
-                        sharedPreference.save(USER_LOGGED, email);
+                        RetrofitHttp retrofitHttp1 = new RetrofitHttp(token.getAccessToken());
+                        userService = retrofitHttp1.getRetrofit().create(UserService.class);
 
-                        startMainActivity();
+                        Response<User> userResponse = userService.getUserByEmail(email).execute();
+                        if (userResponse.isSuccessful()) {
+                            User user = userResponse.body();
 
-                        finish();
+                            if (user.getRol().equals("User")) {
+                                startMainUserActivity();
+                            } else {
+                                startMainCompanyActivity();
+                            }
+                        }
                     } else {
                         showErrorMessage(view, getString(R.string.bad_login));
                     }
@@ -88,6 +99,13 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void obtainToken(Response<Token> response, String email) {
+        Token token = response.body();
+
+        sharedPreference.save(TOKEN_KEY, token.getAccessToken());
+        sharedPreference.save(USER_LOGGED, email);
     }
 
     public void showErrorMessage(final View view, final String error) {
@@ -103,13 +121,21 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void startMainActivity() {
+    public void startMainUserActivity() {
         Intent intent = new Intent(this, MainUserActivity.class);
         startActivity(intent);
+        finish();
+    }
+
+    public void startMainCompanyActivity() {
+        Intent intent = new Intent(this, MainCompanyActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     public void register(final View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
+        finish();
     }
 }
