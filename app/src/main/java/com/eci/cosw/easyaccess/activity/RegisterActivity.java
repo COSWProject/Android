@@ -3,12 +3,12 @@ package com.eci.cosw.easyaccess.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.eci.cosw.easyaccess.R;
-import com.eci.cosw.easyaccess.model.Login;
 import com.eci.cosw.easyaccess.model.User;
 import com.eci.cosw.easyaccess.service.UserService;
 import com.eci.cosw.easyaccess.util.RetrofitHttp;
@@ -64,25 +64,30 @@ public class RegisterActivity extends AppCompatActivity {
         final Integer mobilePhoneInt = Integer.parseInt(userMobilePhone.getText().toString());
         final String cityText = userCity.getText().toString();
 
+        final CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
+
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-                User user = new User(nameText, emailText, passwordText, mobilePhoneInt,
-                        cityText, "User");
 
-                System.out.println(user);
+                User user;
 
+                if (checkBox.isChecked()) {
+                    user = new User(nameText, emailText, passwordText, mobilePhoneInt,
+                            cityText, "Company");
+                } else {
+                    user = new User(nameText, emailText, passwordText, mobilePhoneInt,
+                            cityText, "User");
+                }
                 try {
                     Response<ResponseBody> userResponse = userService.createUser(user).execute();
 
                     if (userResponse.isSuccessful()) {
-                        showMessage(view, "User registered");
                         startLoginActivity();
 
                         finish();
                     }
                 } catch (IOException e) {
-                    System.out.println(e);
                     showMessage(view, "Error creating the user");
                 }
             }
@@ -90,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void startLoginActivity() {
-        Intent intent = new Intent(this, Login.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
@@ -105,10 +110,5 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    public void companyRegister(final View view) {
-        Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
     }
 }
