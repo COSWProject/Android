@@ -34,5 +34,9 @@
                 android:title="@string/menu_send" />
         </menu>
     </item>
+    <item
+        android:id="@+id/company_logout"
+        android:icon="@drawable/ic_baseline_exit_to_app_24px"
+        android:title="Log out" />
 
 </menu>
