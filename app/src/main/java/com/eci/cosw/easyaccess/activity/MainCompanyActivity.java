@@ -15,7 +15,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.eci.cosw.easyaccess.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 public class MainCompanyActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,8 +29,7 @@ public class MainCompanyActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                createMeeting();
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -41,6 +39,12 @@ public class MainCompanyActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void createMeeting() {
+        Intent intent = new Intent(this, CreateMeetingActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
