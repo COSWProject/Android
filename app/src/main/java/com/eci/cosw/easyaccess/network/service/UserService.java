@@ -1,4 +1,4 @@
-package com.eci.cosw.easyaccess.service;
+package com.eci.cosw.easyaccess.network.service;
 
 import com.eci.cosw.easyaccess.model.User;
 
