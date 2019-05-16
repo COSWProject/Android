@@ -1,4 +1,4 @@
-package com.eci.cosw.easyaccess.network.service;
+package com.eci.cosw.easyaccess.service;
 
 import com.eci.cosw.easyaccess.model.Login;
 import com.eci.cosw.easyaccess.model.Token;

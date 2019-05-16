@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.eci.cosw.easyaccess.R;
 import com.eci.cosw.easyaccess.model.User;
-import com.eci.cosw.easyaccess.network.service.UserService;
+import com.eci.cosw.easyaccess.service.UserService;
 import com.eci.cosw.easyaccess.util.RetrofitHttp;
 import com.google.android.material.snackbar.Snackbar;
 
