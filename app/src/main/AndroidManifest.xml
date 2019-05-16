@@ -12,17 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.CreateMeetingActivity"/>
+        <activity
+            android:name=".activity.CreateMeetingActivity"
+            android:label="Create meeting" />
         <activity
             android:name=".activity.MainCompanyActivity"
-            android:label="@string/title_activity_main_company"
+            android:label="Company meetings"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.RegisterActivity"
             android:label="Register" />
         <activity
             android:name=".activity.MainUserActivity"
-            android:label="Meetings"
+            android:label="User meetings"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
