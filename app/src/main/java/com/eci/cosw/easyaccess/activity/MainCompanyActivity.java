@@ -13,11 +13,20 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.eci.cosw.easyaccess.R;
+import com.eci.cosw.easyaccess.util.RetrofitHttp;
+import com.eci.cosw.easyaccess.util.SharedPreference;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainCompanyActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private String file;
+    private SharedPreference sharedPreference;
+    private String USER_LOGGED;
+    private String TOKEN_KEY;
+
+    private RetrofitHttp retrofitHttp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +48,14 @@ public class MainCompanyActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        file = getString(R.string.preference_file_key);
+        sharedPreference = new SharedPreference(this, file);
+
+        TOKEN_KEY = getString(R.string.token_key);
+        USER_LOGGED = getString(R.string.user_logged);
+
+        retrofitHttp = new RetrofitHttp(sharedPreference.getValue(TOKEN_KEY));
     }
 
     private void createMeeting() {
