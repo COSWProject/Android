@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "18617422262",
+    "firebase_url": "https://easyaccess-9ac8c.firebaseio.com",
+    "project_id": "easyaccess-9ac8c",
+    "storage_bucket": "easyaccess-9ac8c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:18617422262:android:26469ce48836147d",
+        "android_client_info": {
+          "package_name": "com.eci.cosw.easyaccess"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "18617422262-td0ttpu6q4vqqb2u2r3e5397n32vck4p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFZmiQFBQYe1Wv1wL21cNrGbBekALyjH4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "18617422262-td0ttpu6q4vqqb2u2r3e5397n32vck4p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
