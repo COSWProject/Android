@@ -12,13 +12,21 @@ import android.os.Parcelable;
 public class Post implements Parcelable {
     
     private String email;
-    private String password;
+    private String name;
     private Bitmap imageUri;
+    private String identification;
+    private String country;
+    private String phone;
+    private String password;
 
-    public Post(String email, String password, Bitmap imageUri){
+    public Post(String email,String password, String name,String identification, String country, String phone, Bitmap imageUri){
         this.email=email;
         this.imageUri=imageUri;
-        this.password=password;
+        this.name=name;
+        this.identification = identification;
+        this.country = country;
+        this.phone = phone;
+        this.password= password;
     }
 
     public Post(){}
@@ -27,12 +35,48 @@ public class Post implements Parcelable {
     public Bitmap getImageUri(){return this.imageUri;}
     public void setEmail(String m){this.email=m;}
     public void setImageUri(Bitmap i){this.imageUri=i;}
-    public String getPassword() { return password;}
-    public void setPassword(String password) { this.password = password;}
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
+
+    public String getIdentification() {
+        return identification;
+    }
+
+    public void setIdentification(String identification) {
+        this.identification = identification;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone( String phone) {
+        this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     protected Post(Parcel in) {
         email = in.readString();
-        password = in.readString();
+        name = in.readString();
+        country = in.readString();
+        identification =in.readString();
         imageUri = in.readParcelable(Bitmap.class.getClassLoader());
     }
 
@@ -55,8 +99,11 @@ public class Post implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(identification);
         dest.writeString(email);
-        dest.writeString(password);
+        dest.writeString(phone);
+        dest.writeString(country);
         dest.writeParcelable(imageUri, flags);
     }
 

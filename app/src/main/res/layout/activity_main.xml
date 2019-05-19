@@ -31,7 +31,6 @@
             android:name="com.eci.cosw.easyaccess.activity.NewPostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
     </FrameLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

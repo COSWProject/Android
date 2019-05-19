@@ -34,8 +34,10 @@ import java.util.Date;
 
 
 public class NewPostFragment extends Fragment {
-    EditText t= null;
+    EditText email= null;
     EditText pass = null;
+    EditText phone= null;
+    EditText country = null;
     ImageView iv=null;
     private String imagePath;
     final int REQUEST_CAMERA = 1;
@@ -67,10 +69,14 @@ public class NewPostFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         this.v =inflater.inflate(R.layout.fragment_new_post, container, false);
 
-        this.t= this.v.findViewById(R.id.editText3);
-        this.pass = this.pass.findViewById(R.id.editText4);
+        this.email= this.v.findViewById(R.id.editText4);
+        this.pass = this.v.findViewById(R.id.editText6);
+        this.phone = this.v.findViewById(R.id.editText7);
+        this.country = this.v.findViewById(R.id.editText8);
+
         this.iv=this.v.findViewById(R.id.imageView3);
 
         final Button button3 = this.v.findViewById(R.id.button3);
@@ -156,11 +162,18 @@ public class NewPostFragment extends Fragment {
 
     public void save(View v){
         if(validation()){
-            EditText editText_email = this.v.findViewById(R.id.editText3);
-            EditText editText_password = this.v.findViewById(R.id.editText4);
+            EditText editText_email = this.v.findViewById(R.id.editText4);
+            EditText editText_password = this.v.findViewById(R.id.editText6);
+            EditText editText_phone = this.v.findViewById(R.id.editText7);
+            EditText editText_country = this.v.findViewById(R.id.editText8);
+
+
             String email = editText_email.getText().toString();
             String password = editText_password.getText().toString();
-            Post p =new Post(email, password, imageSelected);
+            String phone = editText_phone.getText().toString();
+            String country = editText_country.getText().toString();
+
+            Post p =new Post(email,password,"","",country,phone, imageSelected);
             PostFragment postfragment= new PostFragment();
             postfragment.setP(p);
 
@@ -247,14 +260,11 @@ public class NewPostFragment extends Fragment {
 
     public boolean validation(){
 
-        if(t.getText().toString().length()==0 && iv.getDrawable()==null){
-            t.setError("Please enter either a message or select an image");
+        if(email.getText().toString().length()==0 && iv.getDrawable()==null){
+            email.setError("Please enter either a message or select an image");
             return false;
         }
-        if(t.getText().toString().length()<1){
-            t.setError("The text field should have a length longer than 50 characters");
-            return false;
-        }
+
         return true;
     }
 

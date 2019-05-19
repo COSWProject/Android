@@ -20,12 +20,15 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.eci.cosw.easyaccess.activity.R;
+import com.eci.cosw.easyaccess.service.UserService;
 import com.eci.cosw.easyaccess.util.RetrofitHttp;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -65,6 +68,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class TextRecognition {
     private static final String TAG = "TextRecognition";
@@ -79,7 +84,10 @@ public class TextRecognition {
     private Integer mImageMaxWidth;
     // Max height (portrait mode)
     private Integer mImageMaxHeight;
-    private RetrofitHttp retrofitHttp;
+
+    public String name;
+    public String identification;
+    public List<FirebaseVisionText.TextBlock> blocks;
 
     /**
      * Name of the model file hosted with Firebase.
@@ -130,7 +138,6 @@ public class TextRecognition {
     public TextRecognition() {
 
         initCustomModel();
-        retrofitHttp = new RetrofitHttp();
     }
 
     public void runTextRecognition(Bitmap documentId) {
@@ -152,29 +159,31 @@ public class TextRecognition {
                             public void onFailure(@NonNull Exception e) {
                                 // Task failed with an exception
                                 e.printStackTrace();
+
                             }
                         });
     }
 
+
     private void processTextRecognitionResult(FirebaseVisionText texts) {
-        List<FirebaseVisionText.TextBlock> blocks = texts.getTextBlocks();
-        if (blocks.size() == 0) {
+        List<FirebaseVisionText.TextBlock> blocks_two= texts.getTextBlocks();
+        blocks = blocks_two;
+        if (blocks_two.size() == 0) {
             return;
         }
 
-        for (int i = 0; i < blocks.size(); i++) {
-            List<FirebaseVisionText.Line> lines = blocks.get(i).getLines();
-            for (int j = 0; j < lines.size(); j++) {
-                List<FirebaseVisionText.Element> elements = lines.get(j).getElements();
-          // **
-                // for (int k = 0; k < elements.size(); k++) {
-                 //  Log.d()
 
-            //}
+        for (int i = 0; i < blocks_two.size(); i++) {
+            List<FirebaseVisionText.Line> lines = blocks_two.get(i).getLines();
 
-          //retrofitHttp.getRetrofit()
-                Log.d("ELEMENTS", elements.toString());
+            if (lines.toString().equals("REPUBLICA DE COLOMBIA")){
+                for (int j = 0; j < lines.size(); j++) {
+                    List<FirebaseVisionText.Element> elements = lines.get(j).getElements();
+                    Log.d("ELEMENTS", elements.toString());
+                }
             }
+
+
         }
     }
 
@@ -220,4 +229,27 @@ public class TextRecognition {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getIdentification() {
+        return identification;
+    }
+
+    public void setIdentification(String identification) {
+        this.identification = identification;
+    }
+
+    public List<FirebaseVisionText.TextBlock> getBlocks() {
+        return blocks;
+    }
+
+    public void setBlocks(List<FirebaseVisionText.TextBlock> blocks) {
+        this.blocks = blocks;
+    }
 }

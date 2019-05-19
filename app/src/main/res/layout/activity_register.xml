@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.eci.cosw.easyaccess.activity.RegisterActivity">
 
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="288dp"
+        android:layout_height="123dp"
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="468dp" />
+
     <EditText
         android:id="@+id/userEmail"
         style="@style/Base.Widget.MaterialComponents.TextInputEditText"
@@ -25,7 +32,7 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.342" />
+        app:layout_constraintVertical_bias="0.263" />
 
     <EditText
         android:id="@+id/userPassword"
@@ -46,7 +53,7 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.427" />
+        app:layout_constraintVertical_bias="0.336" />
 
     <EditText
         android:id="@+id/userName"
@@ -67,7 +74,7 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.257" />
+        app:layout_constraintVertical_bias="0.185" />
 
     <EditText
         android:id="@+id/userMobilePhone"
@@ -88,7 +95,7 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.512" />
+        app:layout_constraintVertical_bias="0.422" />
 
     <EditText
         android:id="@+id/userCity"
@@ -109,7 +116,7 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.597" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <Button
         android:id="@+id/userRegister"
@@ -122,15 +129,15 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:background="#0d47a1"
-        android:textColor="#FFF"
         android:onClick="register"
         android:text="Register"
+        android:textColor="#FFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.593"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.748" />
+        app:layout_constraintVertical_bias="0.895" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -146,9 +153,17 @@
         android:text="Company"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.248"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.67" />
+        app:layout_constraintVertical_bias="0.594" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Photo"
+        tools:layout_editor_absoluteX="233dp"
+        tools:layout_editor_absoluteY="405dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,12 +1,17 @@
 package com.eci.cosw.easyaccess.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.eci.cosw.easyaccess.activity.R;
 import com.eci.cosw.easyaccess.model.User;
@@ -35,14 +40,17 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText userMobilePhone;
     private EditText userCity;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_main);
 
         retrofitHttp = new RetrofitHttp();
         userService = retrofitHttp.getRetrofit().create(UserService.class);
+
     }
+
 
     public void findViews() {
         userEmail = (EditText) findViewById(R.id.userEmail);
@@ -72,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 User user;
 
-                if (checkBox.isChecked()) {
+               /** if (checkBox.isChecked()) {
                     user = new User(nameText, emailText, passwordText, mobilePhoneInt,
                             cityText, "Company");
                 } else {
@@ -89,7 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 } catch (IOException e) {
                     showMessage(view, "Error creating the user");
-                }
+                }**/
             }
         });
     }
