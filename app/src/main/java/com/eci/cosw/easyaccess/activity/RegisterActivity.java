@@ -73,10 +73,10 @@ public class RegisterActivity extends AppCompatActivity {
                 User user;
 
                 if (checkBox.isChecked()) {
-                    user = new User(nameText, emailText, passwordText, mobilePhoneInt,
+                    user = new User("",nameText, emailText, passwordText, mobilePhoneInt,
                             cityText, "Company");
                 } else {
-                    user = new User(nameText, emailText, passwordText, mobilePhoneInt,
+                    user = new User("",nameText, emailText, passwordText, mobilePhoneInt,
                             cityText, "User");
                 }
                 try {

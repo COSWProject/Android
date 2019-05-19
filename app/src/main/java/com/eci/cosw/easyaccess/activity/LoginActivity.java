@@ -86,7 +86,8 @@ public class LoginActivity extends AppCompatActivity {
                             User user = userResponse.body();
 
                             if (user.getRol().equals("User")) {
-                                startMainUserActivity();
+                                starCodeGenerator();
+                                //startMainUserActivity();
                             } else {
                                 startMainCompanyActivity();
                             }
@@ -135,6 +136,12 @@ public class LoginActivity extends AppCompatActivity {
 
     public void register(final View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void starCodeGenerator(){
+        Intent intent = new Intent(this, CodeGeneratorActivity.class);
         startActivity(intent);
         finish();
     }

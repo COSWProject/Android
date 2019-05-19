@@ -2,6 +2,7 @@ package com.eci.cosw.easyaccess.model;
 
 public class User {
 
+    private String cedula;
     private String name;
     private String email;
     private String password;
@@ -13,8 +14,9 @@ public class User {
 
     }
 
-    public User(String name, String email, String password, int mobilePhone,
+    public User(String cedula,String name, String email, String password, int mobilePhone,
                 String city, String rol) {
+        this.cedula = cedula;
         this.name = name;
         this.email = email;
         this.password = password;
@@ -69,6 +71,14 @@ public class User {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setId(String cedula) {
+        this.cedula = cedula;
     }
 
     @Override
