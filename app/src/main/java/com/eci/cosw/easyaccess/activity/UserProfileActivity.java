@@ -1,4 +1,4 @@
-package com.eci.cosw.easyaccess;
+package com.eci.cosw.easyaccess.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.eci.cosw.easyaccess.activity.MainUserActivity;
+import com.eci.cosw.easyaccess.R;
 import com.eci.cosw.easyaccess.model.User;
 import com.eci.cosw.easyaccess.service.UserService;
 import com.eci.cosw.easyaccess.util.RetrofitHttp;
@@ -59,13 +59,13 @@ public class UserProfileActivity extends AppCompatActivity {
 
         userService = retrofitHttp.getRetrofit().create(UserService.class);
 
-        obtainUser();
-
         profileName = (TextView) findViewById(R.id.profileName);
         profileEmail = (TextView) findViewById(R.id.profileEmail);
         profileMobile = (TextView) findViewById(R.id.profileMobile);
         profileCity = (TextView) findViewById(R.id.profileCity);
         profileRol = (TextView) findViewById(R.id.profileRol);
+
+        obtainUser();
     }
 
     private void obtainUser() {
@@ -77,7 +77,9 @@ public class UserProfileActivity extends AppCompatActivity {
 
                     if (userResponse.isSuccessful()) {
                         user = userResponse.body();
+                        updateUserInfo(findViewById(R.id.drawer_layout), user);
                     }
+                    System.out.println(user);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -85,15 +87,15 @@ public class UserProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUserInfo(final View view) {
+    private void updateUserInfo(final View view, final User user) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                profileName.setText(user.getName());
-                profileEmail.setText(user.getEmail());
-                profileMobile.setText(user.getMobilePhone());
-                profileCity.setText(user.getCity());
-                profileRol.setText(user.getRol());
+                profileName.setText("Name: " + user.getName());
+                profileEmail.setText("Email: " + user.getEmail());
+                profileMobile.setText("Phone: " + String.valueOf(user.getMobilePhone()));
+                profileCity.setText("City: " + user.getCity());
+                profileRol.setText("Rol: " + user.getRol());
             }
         });
     }
