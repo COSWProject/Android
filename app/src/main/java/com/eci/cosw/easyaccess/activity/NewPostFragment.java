@@ -215,7 +215,7 @@ public class NewPostFragment extends Fragment {
                         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
                         StrictMode.setVmPolicy(builder.build());
-                        startActivityForResult(takePictureIntent, REQUEST_CAMERA);
+                        startActivityForResult(takePictureIntent,REQUEST_CAMERA);
                     }
 
 
