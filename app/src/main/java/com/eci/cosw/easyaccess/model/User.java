@@ -2,6 +2,7 @@ package com.eci.cosw.easyaccess.model;
 
 public class User {
 
+    private String cedula;
     private String name;
     private String email;
     private String password;
@@ -9,12 +10,13 @@ public class User {
     private String city;
     private String rol;
 
-    public User(){
+    public User() {
 
     }
 
     public User(String name, String email, String password, int mobilePhone,
                 String city, String rol) {
+        this.cedula = cedula;
         this.name = name;
         this.email = email;
         this.password = password;
@@ -71,14 +73,24 @@ public class User {
         this.rol = rol;
     }
 
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "cedula='" + cedula + '\'' +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", mobilePhone=" + mobilePhone +
                 ", city='" + city + '\'' +
+                ", rol='" + rol + '\'' +
                 '}';
     }
 }
