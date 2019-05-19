@@ -7,49 +7,53 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="897dp"
         android:background="?android:windowBackground"
-        >
+        android:orientation="vertical">
 
 
         <EditText
             android:id="@+id/editText3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="76dp"
+            android:layout_marginTop="100px"
             android:ems="10"
-            android:hint="Enter Message"
-            android:inputType="text" />
+            android:hint="Enter Email"
+            android:inputType="text|textEmailAddress" />
 
         <EditText
             android:id="@+id/editText4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="67dp"
+            android:layout_marginTop="20px"
             android:ems="10"
-            android:hint="Enter Message"
-            android:inputType="text" />
+            android:hint="Enter Password"
+            android:inputType="text|textWebPassword" />
 
         <Button
             android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add Photo"
+            android:layout_width="291dp"
+            android:layout_height="81dp"
+            android:layout_marginLeft="150px"
 
-            />
+            android:text="Add Photo" />
 
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
-            android:layout_height="334dp" />
+            android:layout_height="248dp" />
 
         <Button
             android:id="@+id/button4"
-            android:layout_width="match_parent"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="99dp"
             android:layout_height="wrap_content"
-            android:text="save"
 
-            />
+            android:layout_marginLeft="400px"
+            android:background="#2088898A"
+            android:text="SAVE"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
     </LinearLayout>
 
 </FrameLayout>

@@ -35,6 +35,7 @@ import java.util.Date;
 
 public class NewPostFragment extends Fragment {
     EditText t= null;
+    EditText pass = null;
     ImageView iv=null;
     private String imagePath;
     final int REQUEST_CAMERA = 1;
@@ -69,6 +70,7 @@ public class NewPostFragment extends Fragment {
         this.v =inflater.inflate(R.layout.fragment_new_post, container, false);
 
         this.t= this.v.findViewById(R.id.editText3);
+        this.pass = this.pass.findViewById(R.id.editText4);
         this.iv=this.v.findViewById(R.id.imageView3);
 
         final Button button3 = this.v.findViewById(R.id.button3);

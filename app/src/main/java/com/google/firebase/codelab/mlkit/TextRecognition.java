@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.eci.cosw.easyaccess.util.RetrofitHttp;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -78,6 +79,8 @@ public class TextRecognition {
     private Integer mImageMaxWidth;
     // Max height (portrait mode)
     private Integer mImageMaxHeight;
+    private RetrofitHttp retrofitHttp;
+
     /**
      * Name of the model file hosted with Firebase.
      */
@@ -125,7 +128,9 @@ public class TextRecognition {
     private FirebaseModelInputOutputOptions mDataOptions;
 
     public TextRecognition() {
+
         initCustomModel();
+        retrofitHttp = new RetrofitHttp();
     }
 
     public void runTextRecognition(Bitmap documentId) {
@@ -161,11 +166,13 @@ public class TextRecognition {
             List<FirebaseVisionText.Line> lines = blocks.get(i).getLines();
             for (int j = 0; j < lines.size(); j++) {
                 List<FirebaseVisionText.Element> elements = lines.get(j).getElements();
-                //for (int k = 0; k < elements.size(); k++) {
-                //    Graphic textGraphic = new TextGraphic(mGraphicOverlay, elements.get(k));
-                //    mGraphicOverlay.add(textGraphic);
+          // **
+                // for (int k = 0; k < elements.size(); k++) {
+                 //  Log.d()
 
-                
+            //}
+
+          //retrofitHttp.getRetrofit()
                 Log.d("ELEMENTS", elements.toString());
             }
         }

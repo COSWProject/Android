@@ -22,8 +22,7 @@ public class PostFragment extends Fragment {
     private View v;
 
 
-    public PostFragment() {
-    }
+    public PostFragment() { }
 
     public static PostFragment newInstance(String param1, String param2) {
         PostFragment fragment = new PostFragment();
@@ -46,14 +45,20 @@ public class PostFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v=inflater.inflate(R.layout.fragment_post, container, false);
+
         TextView textView = v.findViewById(R.id.textView4);
         String m =this.p.getEmail();
         textView.setText(m);
+
+        //TextView textView2 = v.findViewById(R.id.);
+
         ImageView imageView = v.findViewById(R.id.imageView4);
         Bitmap b = this.p.getImageUri();
         imageView.setImageBitmap(b);
+
         TextRecognition textRecognition = new TextRecognition();
         textRecognition.runTextRecognition(b);
+
         return this.v;
     }
 
