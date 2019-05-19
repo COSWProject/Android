@@ -12,7 +12,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.eci.cosw.easyaccess.R;
-import com.eci.cosw.easyaccess.UserProfileActivity;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainUserActivity extends AppCompatActivity
