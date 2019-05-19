@@ -12,8 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.UserProfileActivity"
-            android:label="User profile"/>
+        <activity android:name=".activity.UpdateUserProfileActivity"
+            android:label="Update profile"/>
+        <activity
+            android:name=".activity.UserProfileActivity"
+            android:label="User profile" />
         <activity
             android:name=".activity.CreateMeetingActivity"
             android:label="Create meeting" />
