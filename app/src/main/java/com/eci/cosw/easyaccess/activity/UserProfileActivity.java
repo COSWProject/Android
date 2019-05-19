@@ -41,6 +41,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextView profileMobile;
     private TextView profileCity;
     private TextView profileRol;
+    private TextView profileCedula;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,7 @@ public class UserProfileActivity extends AppCompatActivity {
         profileMobile = (TextView) findViewById(R.id.profileMobile);
         profileCity = (TextView) findViewById(R.id.profileCity);
         profileRol = (TextView) findViewById(R.id.profileRol);
+        profileCedula = (TextView) findViewById(R.id.profileCedula);
 
         obtainUser();
     }
@@ -91,6 +93,7 @@ public class UserProfileActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                profileCedula.setText("Ident: " + user.getCedula());
                 profileName.setText("Name: " + user.getName());
                 profileEmail.setText("Email: " + user.getEmail());
                 profileMobile.setText("Phone: " + String.valueOf(user.getMobilePhone()));
@@ -100,10 +103,16 @@ public class UserProfileActivity extends AppCompatActivity {
         });
     }
 
+    public void updateUserProfile(final View view) {
+        Intent intent = new Intent(this, UpdateUserProfileActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = new Intent(this, MainUserActivity.class);
         startActivity(intent);
+        finish();
         return true;
     }
 }
