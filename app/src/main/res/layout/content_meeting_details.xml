@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:rowCount="5"
+    android:columnCount="2"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.Meetings_details">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre:"
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="267dp"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="221dp"
+        tools:layout_editor_absoluteY="200dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Institucion:"
+        tools:layout_editor_absoluteX="108dp"
+        tools:layout_editor_absoluteY="338dp"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/institucion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="221dp"
+        tools:layout_editor_absoluteY="338dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/Cedula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cedula:"
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="267dp"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/cedula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="221dp"
+        tools:layout_editor_absoluteY="267dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha:"
+        tools:layout_editor_absoluteX="108dp"
+        tools:layout_editor_absoluteY="402dp"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="213dp"
+        tools:layout_editor_absoluteY="402dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/Hora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hora:"
+        tools:layout_editor_absoluteX="108dp"
+        tools:layout_editor_absoluteY="482dp"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/hora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="213dp"
+        tools:layout_editor_absoluteY="482dp"
+        android:textSize="20sp"/>
+</GridLayout>

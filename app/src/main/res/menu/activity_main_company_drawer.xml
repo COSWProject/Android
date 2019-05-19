@@ -4,6 +4,12 @@
     tools:showIn="navigation_view">
 
     <item
+        android:id="@+id/company_reader"
+        android:icon="@drawable/ic_menu_camera"
+        android:title="Reader"
+        />
+
+    <item
         android:id="@+id/company_logout"
         android:icon="@drawable/ic_baseline_exit_to_app_24px"
         android:title="Logout" />

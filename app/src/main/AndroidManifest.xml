@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.eci.cosw.easyaccess">
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,6 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activity.Meetings_details"
+            android:label="@string/title_activity_meetings_details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity.CodeScanner" />
         <activity
             android:name=".activity.CreateMeetingActivity"
             android:label="Create meeting" />

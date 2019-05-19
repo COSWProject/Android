@@ -11,12 +11,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.eci.cosw.easyaccess.R;
+import com.eci.cosw.easyaccess.adapter.RVAdapter;
+import com.eci.cosw.easyaccess.model.Access;
+import com.eci.cosw.easyaccess.service.AccessService;
+import com.eci.cosw.easyaccess.service.UserService;
 import com.eci.cosw.easyaccess.util.RetrofitHttp;
 import com.eci.cosw.easyaccess.util.SharedPreference;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Response;
 
 public class MainCompanyActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,13 +39,33 @@ public class MainCompanyActivity extends AppCompatActivity
     private String USER_LOGGED;
     private String TOKEN_KEY;
 
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private LinearLayoutManager layoutManager;
+
     private RetrofitHttp retrofitHttp;
+    private AccessService accessService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_company);
         Toolbar toolbar = findViewById(R.id.toolbar);
+
+
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        List<Access> accesses = getAccesses();
+
+        // specify an adapter (see also next example)
+        mAdapter = new RVAdapter(accesses);
+        recyclerView.setAdapter(mAdapter);
+
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +97,20 @@ public class MainCompanyActivity extends AppCompatActivity
         finish();
     }
 
+    private List<Access> getAccesses(){
+        List<Access> accesses= new ArrayList<>();
+        accessService = retrofitHttp.getRetrofit().create(AccessService.class);
+        try {
+            Response<List<Access>> accessesResponse = accessService.getAccesses().execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        accesses.add(new Access("Oscar Alba", "Oscar Alba-ECI-1015489564-21/05/2019-8:00", "Oswaldo","ECI", "8:00", "21/05/2019", "55" ));
+        accesses.add(new Access("Oscar Alba", "Oscar Alba-ECI-1015489564-21/05/2019-8:00", "Oswaldo","ECI", "8:00", "21/05/2019", "55" ));
+        accesses.add(new Access("Oscar Alba", "Oscar Alba-ECI-1015489564-21/05/2019-8:00", "Oswaldo","ECI", "8:00", "21/05/2019", "55" ));
+        return accesses;
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -77,7 +124,7 @@ public class MainCompanyActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_company, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -104,6 +151,8 @@ public class MainCompanyActivity extends AppCompatActivity
 
         if (id == R.id.company_logout) {
             logOut();
+        }else if(id == R.id.company_reader){
+            qrReader();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -116,4 +165,11 @@ public class MainCompanyActivity extends AppCompatActivity
         startActivity(intent);
         finish();
     }
+
+    private void qrReader(){
+        Intent intent = new Intent(this, CodeScanner.class);
+        startActivity(intent);
+    }
+
+
 }
