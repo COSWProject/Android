@@ -14,24 +14,17 @@
 
 package com.google.firebase.codelab.mlkit;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.res.AssetManager;
+
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+
 import android.util.Log;
-import android.util.Pair;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnFailureListener;
