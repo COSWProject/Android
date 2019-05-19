@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.eci.cosw.easyaccess.R;
+import com.eci.cosw.easyaccess.activity.R;
 import com.eci.cosw.easyaccess.service.AccessService;
 import com.eci.cosw.easyaccess.service.UserService;
 import com.eci.cosw.easyaccess.util.RetrofitHttp;

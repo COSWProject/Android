@@ -7,7 +7,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.eci.cosw.easyaccess.R;
+import com.eci.cosw.easyaccess.activity.R;
 import com.eci.cosw.easyaccess.model.Login;
 import com.eci.cosw.easyaccess.model.Token;
 import com.eci.cosw.easyaccess.model.User;
