@@ -18,7 +18,7 @@
         android:layout_marginBottom="8dp"
         android:background="#0d47a1"
         android:onClick="updateUserProfile"
-        android:text="Update"
+        android:text="Update profile"
         android:textColor="#FFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
