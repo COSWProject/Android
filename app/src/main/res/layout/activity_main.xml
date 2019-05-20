@@ -22,4 +22,10 @@
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/access"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -8,19 +8,20 @@ public class User {
     private int mobilePhone;
     private String city;
     private String rol;
+    private String cedula;
 
     public User(){
 
     }
 
-    public User(String name, String email, String password, int mobilePhone,
-                String city, String rol) {
+    public User(String name, String email, String password, int mobilePhone, String city, String rol, String cedula) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.mobilePhone = mobilePhone;
         this.city = city;
         this.rol = rol;
+        this.cedula = cedula;
     }
 
     public String getName() {
@@ -71,6 +72,14 @@ public class User {
         this.rol = rol;
     }
 
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -79,6 +88,8 @@ public class User {
                 ", password='" + password + '\'' +
                 ", mobilePhone=" + mobilePhone +
                 ", city='" + city + '\'' +
+                ", rol='" + rol + '\'' +
+                ", cedula='" + cedula + '\'' +
                 '}';
     }
 }

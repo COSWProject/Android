@@ -2,9 +2,11 @@ package com.eci.cosw.easyaccess.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.eci.cosw.easyaccess.R;
 import com.eci.cosw.easyaccess.adapter.RVAdapter;
 import com.eci.cosw.easyaccess.model.Access;
+import com.eci.cosw.easyaccess.model.User;
 import com.eci.cosw.easyaccess.service.AccessService;
+import com.eci.cosw.easyaccess.service.UserService;
 import com.eci.cosw.easyaccess.util.RetrofitHttp;
 import com.eci.cosw.easyaccess.util.SharedPreference;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -41,11 +45,11 @@ public class MainCompanyActivity extends AppCompatActivity
     private RVAdapter rvAdapter;
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
     private LinearLayoutManager layoutManager;
 
     private RetrofitHttp retrofitHttp;
     private AccessService accessService;
+    private UserService userService;
 
     private final ExecutorService executorService =
             Executors.newFixedThreadPool(1);
@@ -107,29 +111,32 @@ public class MainCompanyActivity extends AppCompatActivity
             @Override
             public void run() {
                 recyclerView.setAdapter(rvAdapter);
-                rvAdapter.updateAccesses(accesses);
+                rvAdapter.updateAccesses(accesses,"Company");
             }
         });
     }
 
     private void getAccesses() {
         accessService = retrofitHttp.getRetrofit().create(AccessService.class);
-
+        userService = retrofitHttp.getRetrofit().create(UserService.class);
         executorService.execute(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Response<List<Access>> accessesResponse = accessService.getAccesses().execute();
+                    Response<User> userResponse = userService.getUserByEmail(sharedPreference.getValue(USER_LOGGED)).execute();
+                    String name = userResponse.body().getName();
+                    Log.d("STATE",name);
+                    Response<List<Access>> accessesResponse = accessService.getAccessByCompany("24230").execute();
 
                     if (accessesResponse.isSuccessful()) {
                         accesses = accessesResponse.body();
 
                         accesses.add(new Access("Oscar Alba", "Oscar Alba-ECI-1015489564-21/05/2019-8:00",
-                                "Oswaldo", "ECI", "8:00", "21/05/2019", "55"));
+                                "Oswaldo", "ECI", "8:00 am", "21/05/2019", "55"));
                         accesses.add(new Access("Oscar Alba", "Oscar Alba-ECI-1015489564-21/05/2019-8:00",
-                                "Oswaldo", "ECI", "8:00", "21/05/2019", "55"));
+                                "Oswaldo", "ECI", "8:00 am", "21/05/2019", "55"));
                         accesses.add(new Access("Oscar Alba", "Oscar Alba-ECI-1015489564-21/05/2019-8:00",
-                                "Oswaldo", "ECI", "8:00", "21/05/2019", "55"));
+                                "Oswaldo", "ECI", "8:00 am", "21/05/2019", "55"));
 
                         udpateAccesses();
                     }

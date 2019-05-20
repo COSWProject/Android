@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText userName;
     private EditText userMobilePhone;
     private EditText userCity;
+    private EditText userCedula;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
         userName = (EditText) findViewById(R.id.userName);
         userMobilePhone = (EditText) findViewById(R.id.userMobilePhone);
         userCity = (EditText) findViewById(R.id.userCity);
+        userCedula = (EditText) findViewById(R.id.cedula);
     }
 
     public void register(final View view) {
@@ -63,6 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
         final String nameText = userName.getText().toString();
         final Integer mobilePhoneInt = Integer.parseInt(userMobilePhone.getText().toString());
         final String cityText = userCity.getText().toString();
+        final String cedulaText = userCedula.getText().toString();
 
         final CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
 
@@ -74,10 +78,10 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (checkBox.isChecked()) {
                     user = new User(nameText, emailText, passwordText, mobilePhoneInt,
-                            cityText, "Company");
+                            cityText, "Company",cedulaText);
                 } else {
                     user = new User(nameText, emailText, passwordText, mobilePhoneInt,
-                            cityText, "User");
+                            cityText, "User",cedulaText);
                 }
                 try {
                     Response<ResponseBody> userResponse = userService.createUser(user).execute();
