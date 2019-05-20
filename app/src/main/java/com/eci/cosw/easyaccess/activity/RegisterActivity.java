@@ -1,11 +1,15 @@
 package com.eci.cosw.easyaccess.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.eci.cosw.easyaccess.R;
@@ -13,8 +17,11 @@ import com.eci.cosw.easyaccess.model.User;
 import com.eci.cosw.easyaccess.service.UserService;
 import com.eci.cosw.easyaccess.util.RetrofitHttp;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -23,6 +30,7 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    private static final int PICK_IMAGE = 1;
     private RetrofitHttp retrofitHttp;
     private UserService userService;
 
@@ -77,10 +85,10 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (checkBox.isChecked()) {
                     user = new User(nameText, emailText, passwordText, mobilePhoneInt,
-                            cityText, "Company",cedulaText);
+                            cityText, "Company", cedulaText);
                 } else {
                     user = new User(nameText, emailText, passwordText, mobilePhoneInt,
-                            cityText, "User",cedulaText);
+                            cityText, "User", cedulaText);
                 }
                 try {
                     Response<ResponseBody> userResponse = userService.createUser(user).execute();
@@ -113,5 +121,30 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void uploadId(final View view) {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select picture"),
+                PICK_IMAGE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE) {
+            final Uri imageUri = data.getData();
+            try {
+                InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+
+                FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(selectedImage);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
