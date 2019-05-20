@@ -7,78 +7,96 @@
     tools:context=".activity.CreateMeetingActivity">
 
     <EditText
-        android:id="@+id/institution"
+        android:id="@+id/owner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="148dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:ems="10"
-        android:hint="Institution"
+        android:hint="Identification invited"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.386" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/user-id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:id="@+id/et_mostrar_fecha_picker"
+        android:layout_width="155dp"
+        android:layout_height="41dp"
+        android:layout_marginLeft="102dp"
+        android:layout_marginTop="55dp"
         android:ems="10"
-        android:hint="User id"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.468" />
+        android:hint="@string/formato_fecha"
+        android:inputType="date"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/owner" />
 
-    <Button
-        android:id="@+id/button"
+    <EditText
+        android:id="@+id/et_mostrar_hora_picker"
+        android:layout_width="155dp"
+        android:layout_height="41dp"
+        android:layout_marginLeft="102dp"
+        android:layout_marginTop="55dp"
+        android:ems="10"
+        android:hint="@string/formato_hora"
+        android:inputType="time"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_mostrar_fecha_picker" />
+
+    <ImageButton
+        android:id="@+id/ib_obtener_fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="showTimePickerDialog"
-        android:text="Select hour"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="56dp"
+        android:src="@drawable/ic_event_date"
+        app:layout_constraintBottom_toTopOf="@+id/ib_obtener_hora"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintLeft_toRightOf="@+id/et_mostrar_fecha_picker"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.556" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="ContentDescription" />
 
-    <Button
+    <ImageButton
+        android:id="@+id/ib_obtener_hora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="showDatePickerDialog"
-        android:text="Select date"
+        android:src="@drawable/ic_event_time"
+        app:layout_constraintBottom_toTopOf="@+id/createMeeting"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintLeft_toRightOf="@+id/et_mostrar_hora_picker"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_mostrar_hora_picker"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="ContentDescription" />
+
+    <Button
+        android:id="@+id/createMeeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginRight="130dp"
+        android:layout_marginBottom="144dp"
+        android:onClick="createMeeting"
+        android:text="Create Meeting"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.643" />
+        app:layout_constraintTop_toBottomOf="@+id/et_mostrar_hora_picker"
+        app:layout_constraintVertical_bias="0.86" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
