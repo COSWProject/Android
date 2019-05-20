@@ -1,6 +1,7 @@
 package com.eci.cosw.easyaccess.activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ public class CodeGeneratorActivity extends AppCompatActivity {
     private static final int ALTURA_CODIGO = 500, ANCHURA_CODIGO = 500;
     private static final int CODIGO_PERMISO_ESCRIBIR_ALMACENAMIENTO = 1;
     private EditText etTextoParaCodigo;
+    private String text;
 
     private boolean tienePermisoParaEscribir = false; // Para los permisos en tiempo de ejecución
 
@@ -42,23 +44,17 @@ public class CodeGeneratorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_codegenerator);
 
-        etTextoParaCodigo = (EditText) findViewById(R.id.etTextoParaCodigo);
+        Intent intent = getIntent();
+        text = intent.getStringExtra("QR");
+
 
         final ImageView imagenCodigo = findViewById(R.id.ivCodigoGenerado);
 
-        Button btnGenerar = findViewById(R.id.btnGenerar);
 
 
-        btnGenerar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String texto = obtenerTextoParaCodigo();
-                if (texto.isEmpty()) return;
-
-                Bitmap bitmap = QRCode.from(texto).withSize(ANCHURA_CODIGO, ALTURA_CODIGO).bitmap();
+                Bitmap bitmap = QRCode.from(text).withSize(ANCHURA_CODIGO, ALTURA_CODIGO).bitmap();
                 imagenCodigo.setImageBitmap(bitmap);
-            }
-        });
+
 
     }
 

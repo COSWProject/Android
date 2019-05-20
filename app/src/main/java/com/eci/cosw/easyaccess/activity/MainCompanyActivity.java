@@ -97,7 +97,7 @@ public class MainCompanyActivity extends AppCompatActivity
         getAccesses();
 
         // specify an adapter (see also next example)
-        rvAdapter = new RVAdapter();
+        rvAdapter = new RVAdapter(this);
     }
 
     private void createMeeting() {

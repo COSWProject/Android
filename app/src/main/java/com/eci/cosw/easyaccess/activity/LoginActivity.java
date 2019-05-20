@@ -86,8 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                             User user = userResponse.body();
 
                             if (user.getRol().equals("User")) {
-                                starCodeGenerator();
-                                //startMainUserActivity();
+                                startMainUserActivity();
                             } else {
                                 startMainCompanyActivity();
                             }
