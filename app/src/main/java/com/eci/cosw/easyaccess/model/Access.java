@@ -2,7 +2,6 @@ package com.eci.cosw.easyaccess.model;
 
 public class Access {
 
-    private String id;
     private String owner;
     private String qr;
     private String invitedBy;
@@ -24,10 +23,6 @@ public class Access {
         this.time = time;
         this.date = date;
         this.expirationTime = expirationTime;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getOwner() {
@@ -89,8 +84,7 @@ public class Access {
     @Override
     public String toString() {
         return "Access{" +
-                "id='" + id + '\'' +
-                ", owner='" + owner + '\'' +
+                "owner='" + owner + '\'' +
                 ", qr='" + qr + '\'' +
                 ", invitedBy='" + invitedBy + '\'' +
                 ", institution='" + institution + '\'' +

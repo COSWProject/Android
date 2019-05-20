@@ -26,5 +26,8 @@
     <string name="title_activity_main_company">MainCompanyActivity</string>
     <string name="title_activity_code_scanner">code_scanner</string>
     <string name="title_activity_meetings_details">Meetings_details</string>
+    <string name="title_activity_codegenerator">activity_codegenerator</string>
+    <string name="formato_fecha">dd/mm/yyyy</string>
+    <string name="formato_hora">hh:mm</string>
 
 </resources>

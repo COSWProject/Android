@@ -2,19 +2,20 @@ package com.eci.cosw.easyaccess.model;
 
 public class User {
 
+    private String cedula;
     private String name;
     private String email;
     private String password;
     private int mobilePhone;
     private String city;
     private String rol;
-    private String cedula;
 
     public User(){
 
     }
 
     public User(String name, String email, String password, int mobilePhone, String city, String rol, String cedula) {
+
         this.name = name;
         this.email = email;
         this.password = password;

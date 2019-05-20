@@ -32,6 +32,9 @@
             android:name=".activity.MainUserActivity"
             android:label="User meetings"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.CodeGeneratorActivity"
+            android:label="Code Generator" />
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -16,4 +16,7 @@ public interface UserService {
 
     @GET("api/user/email/{email}")
     Call<User> getUserByEmail(@Path("email") String email);
+
+    @GET("api/user/cedula/{cardId}")
+    Call<User> getByCardId(@Path("cardId") String cedula);
 }
