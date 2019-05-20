@@ -27,15 +27,11 @@ public class PostFragment extends Fragment {
     private Post p;
     private View v;
 
-
-
     private String ide;
 
     public PostFragment() {
 
     }
-
-
 
     public Post getP() {
         return p;
@@ -53,7 +49,6 @@ public class PostFragment extends Fragment {
         ImageView imageView = v.findViewById(R.id.imageView4);
         Bitmap b = this.p.getImageUri();
         imageView.setImageBitmap(b);
-
 
         TextView textView_two = v.findViewById(R.id.textView3);
         final String mail =this.p.getEmail();
