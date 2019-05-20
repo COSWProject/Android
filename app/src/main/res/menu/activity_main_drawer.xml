@@ -5,9 +5,13 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/user_profile"
+            android:icon="@drawable/ic_baseline_account_circle_24px"
+            android:title="Profile" />
+        <item
             android:id="@+id/user_meetings"
             android:icon="@drawable/ic_baseline_meeting_room_24px"
-            android:title="Meetings"/>
+            android:title="Meetings" />
     </group>
     <item
         android:id="@+id/user_logout"

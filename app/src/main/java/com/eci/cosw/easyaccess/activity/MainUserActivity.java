@@ -135,11 +135,18 @@ public class MainUserActivity extends AppCompatActivity
             // Handle the camera action
         } else if (id == R.id.user_logout) {
             logOut();
+        } else if (id == R.id.user_profile) {
+            userProfile();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void userProfile() {
+        Intent intent = new Intent(this, UserProfileActivity.class);
+        startActivity(intent);
     }
 
     public void logOut() {
