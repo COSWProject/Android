@@ -18,17 +18,16 @@ import com.eci.cosw.easyaccess.R;
 import com.eci.cosw.easyaccess.adapter.RVAdapter;
 import com.eci.cosw.easyaccess.model.Access;
 import com.eci.cosw.easyaccess.service.AccessService;
-import com.eci.cosw.easyaccess.service.UserService;
 import com.eci.cosw.easyaccess.util.RetrofitHttp;
 import com.eci.cosw.easyaccess.util.SharedPreference;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-import okhttp3.ResponseBody;
 import retrofit2.Response;
 
 public class MainCompanyActivity extends AppCompatActivity
@@ -39,12 +38,19 @@ public class MainCompanyActivity extends AppCompatActivity
     private String USER_LOGGED;
     private String TOKEN_KEY;
 
+    private RVAdapter rvAdapter;
+
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private LinearLayoutManager layoutManager;
 
     private RetrofitHttp retrofitHttp;
     private AccessService accessService;
+
+    private final ExecutorService executorService =
+            Executors.newFixedThreadPool(1);
+
+    private List<Access> accesses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,18 +59,12 @@ public class MainCompanyActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.access);
         recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
-        List<Access> accesses = getAccesses();
-
-        // specify an adapter (see also next example)
-        mAdapter = new RVAdapter(accesses);
-        recyclerView.setAdapter(mAdapter);
 
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -89,6 +89,11 @@ public class MainCompanyActivity extends AppCompatActivity
         USER_LOGGED = getString(R.string.user_logged);
 
         retrofitHttp = new RetrofitHttp(sharedPreference.getValue(TOKEN_KEY));
+
+        getAccesses();
+
+        // specify an adapter (see also next example)
+        rvAdapter = new RVAdapter();
     }
 
     private void createMeeting() {
@@ -97,18 +102,42 @@ public class MainCompanyActivity extends AppCompatActivity
         finish();
     }
 
-    private List<Access> getAccesses(){
-        List<Access> accesses= new ArrayList<>();
+    public void udpateAccesses() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                recyclerView.setAdapter(rvAdapter);
+                rvAdapter.updateAccesses(accesses);
+            }
+        });
+    }
+
+    private void getAccesses() {
         accessService = retrofitHttp.getRetrofit().create(AccessService.class);
-        try {
-            Response<List<Access>> accessesResponse = accessService.getAccesses().execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        accesses.add(new Access("Oscar Alba", "Oscar Alba-ECI-1015489564-21/05/2019-8:00", "Oswaldo","ECI", "8:00", "21/05/2019", "55" ));
-        accesses.add(new Access("Oscar Alba", "Oscar Alba-ECI-1015489564-21/05/2019-8:00", "Oswaldo","ECI", "8:00", "21/05/2019", "55" ));
-        accesses.add(new Access("Oscar Alba", "Oscar Alba-ECI-1015489564-21/05/2019-8:00", "Oswaldo","ECI", "8:00", "21/05/2019", "55" ));
-        return accesses;
+
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Response<List<Access>> accessesResponse = accessService.getAccesses().execute();
+
+                    if (accessesResponse.isSuccessful()) {
+                        accesses = accessesResponse.body();
+
+                        accesses.add(new Access("Oscar Alba", "Oscar Alba-ECI-1015489564-21/05/2019-8:00",
+                                "Oswaldo", "ECI", "8:00", "21/05/2019", "55"));
+                        accesses.add(new Access("Oscar Alba", "Oscar Alba-ECI-1015489564-21/05/2019-8:00",
+                                "Oswaldo", "ECI", "8:00", "21/05/2019", "55"));
+                        accesses.add(new Access("Oscar Alba", "Oscar Alba-ECI-1015489564-21/05/2019-8:00",
+                                "Oswaldo", "ECI", "8:00", "21/05/2019", "55"));
+
+                        udpateAccesses();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override
@@ -151,7 +180,7 @@ public class MainCompanyActivity extends AppCompatActivity
 
         if (id == R.id.company_logout) {
             logOut();
-        }else if(id == R.id.company_reader){
+        } else if (id == R.id.company_reader) {
             qrReader();
         }
 
@@ -166,7 +195,7 @@ public class MainCompanyActivity extends AppCompatActivity
         finish();
     }
 
-    private void qrReader(){
+    private void qrReader() {
         Intent intent = new Intent(this, CodeScanner.class);
         startActivity(intent);
     }

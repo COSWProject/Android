@@ -6,21 +6,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.eci.cosw.easyaccess.R;
 import com.eci.cosw.easyaccess.model.Access;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AccessViewHolder> {
 
     public List<Access> accesses;
-
-    public RVAdapter(List<Access> accesses)  {
-        this.accesses = accesses;
-    }
 
     @Override
     public int getItemCount() {
@@ -36,21 +31,27 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AccessViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull AccessViewHolder accessViewHolder, int i) {
-        accessViewHolder.getTextView().setText(accesses.get(i).getTime());
+        Access access = accesses.get(i);
+        accessViewHolder.getTextView().setText(access.getQr());
     }
-    @Override
+
+/*    @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
+    }*/
+
+    public void updateAccesses(List<Access> accesses) {
+        this.accesses = accesses;
+        notifyDataSetChanged();
     }
 
     class AccessViewHolder extends RecyclerView.ViewHolder {
         private TextView textView;
 
-        AccessViewHolder(View itemView){
+        AccessViewHolder(@NonNull View itemView) {
             super(itemView);
 
             textView = itemView.findViewById(R.id.accessRow);
-
 
         }
 

@@ -86,4 +86,17 @@ public class Access {
         this.expirationTime = expirationTime;
     }
 
+    @Override
+    public String toString() {
+        return "Access{" +
+                "id='" + id + '\'' +
+                ", owner='" + owner + '\'' +
+                ", qr='" + qr + '\'' +
+                ", invitedBy='" + invitedBy + '\'' +
+                ", institution='" + institution + '\'' +
+                ", time='" + time + '\'' +
+                ", date='" + date + '\'' +
+                ", expirationTime='" + expirationTime + '\'' +
+                '}';
+    }
 }
