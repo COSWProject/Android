@@ -69,6 +69,8 @@ public class RegisterActivity extends AppCompatActivity {
         userService = retrofitHttp.getRetrofit().create(UserService.class);
 
         userInfo = new ArrayList<String>();
+
+        findViews();
     }
 
     public void findViews() {
@@ -77,14 +79,15 @@ public class RegisterActivity extends AppCompatActivity {
         userName = (EditText) findViewById(R.id.userName);
         userMobilePhone = (EditText) findViewById(R.id.userMobilePhone);
         userCity = (EditText) findViewById(R.id.userCity);
-        userCedula = (EditText) findViewById(R.id.cedula);
+        userCedula = (EditText) findViewById(R.id.userId);
+
+        userName.setEnabled(false);
+        userCedula.setEnabled(false);
     }
 
     public void register(final View view) {
 
         view.setEnabled(false);
-
-        findViews();
 
         final String emailText = userEmail.getText().toString();
         final String passwordText = userPassword.getText().toString();
@@ -229,9 +232,12 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 } else {
-                    fullName += x;
+                    fullName += x + " ";
                 }
             }
         }
+
+        userName.setText(fullName);
+        userCedula.setText(fullId);
     }
 }
