@@ -45,4 +45,9 @@ dependencies {
     annotationProcessor 'androidx.room:room-compiler:2.0.0'
     implementation 'com.google.android.gms:play-services-vision:9.8.0'
 
+    implementation 'com.google.firebase:firebase-core:16.0.8'
+
+
 }
+
+apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
