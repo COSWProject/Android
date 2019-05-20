@@ -13,8 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.UserProfileActivity"
-            android:label="User profile"/>
+
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="ocr" />
+
+        <activity
+            android:name=".activity.UserProfileActivity"
+            android:label="User profile" />
         <activity
             android:name=".activity.Meetings_details"
             android:label="@string/title_activity_meetings_details"
