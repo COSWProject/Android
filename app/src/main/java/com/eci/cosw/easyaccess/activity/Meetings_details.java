@@ -2,16 +2,12 @@ package com.eci.cosw.easyaccess.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.eci.cosw.easyaccess.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.View;
-import android.widget.TextView;
+import com.eci.cosw.easyaccess.R;
 
 public class Meetings_details extends AppCompatActivity {
 

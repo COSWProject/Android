@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Environment;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -51,9 +48,8 @@ public class CodeGeneratorActivity extends AppCompatActivity {
         final ImageView imagenCodigo = findViewById(R.id.ivCodigoGenerado);
 
 
-
-                Bitmap bitmap = QRCode.from(text).withSize(ANCHURA_CODIGO, ALTURA_CODIGO).bitmap();
-                imagenCodigo.setImageBitmap(bitmap);
+        Bitmap bitmap = QRCode.from(text).withSize(ANCHURA_CODIGO, ALTURA_CODIGO).bitmap();
+        imagenCodigo.setImageBitmap(bitmap);
 
 
     }
