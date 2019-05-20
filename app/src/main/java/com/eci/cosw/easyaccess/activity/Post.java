@@ -19,7 +19,11 @@ public class Post implements Parcelable {
     private String phone;
     private String password;
 
-    public Post(String email,String password, String name,String identification, String country, String phone, Bitmap imageUri){
+    public Post(String email,String password,
+                String name,String identification,
+                String country, String phone,
+                Bitmap imageUri){
+
         this.email=email;
         this.imageUri=imageUri;
         this.name=name;

@@ -27,6 +27,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import com.google.firebase.codelab.mlkit.TextRecognition;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -38,6 +40,7 @@ public class NewPostFragment extends Fragment {
     EditText pass = null;
     EditText phone= null;
     EditText country = null;
+    String ide;
     ImageView iv=null;
     private String imagePath;
     final int REQUEST_CAMERA = 1;
@@ -162,6 +165,7 @@ public class NewPostFragment extends Fragment {
 
     public void save(View v){
         if(validation()){
+
             EditText editText_email = this.v.findViewById(R.id.editText4);
             EditText editText_password = this.v.findViewById(R.id.editText6);
             EditText editText_phone = this.v.findViewById(R.id.editText7);
@@ -173,7 +177,13 @@ public class NewPostFragment extends Fragment {
             String phone = editText_phone.getText().toString();
             String country = editText_country.getText().toString();
 
-            Post p =new Post(email,password,"","",country,phone, imageSelected);
+            TextRecognition textRecognition = new TextRecognition(email,password,phone,country);
+
+            textRecognition.runTextRecognition(imageSelected);
+
+             //ide =textRecognition.getIdentification();
+
+            Post p =new Post(email,password,"Oscar",ide,country,phone, imageSelected);
             PostFragment postfragment= new PostFragment();
             postfragment.setP(p);
 

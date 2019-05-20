@@ -37,7 +37,7 @@
             android:layout_marginTop="20px"
             android:ems="10"
             android:hint="Enter Phone"
-            android:inputType="number|text" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/editText8"

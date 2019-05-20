@@ -23,11 +23,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.eci.cosw.easyaccess.activity.R;
+import com.eci.cosw.easyaccess.model.User;
 import com.eci.cosw.easyaccess.service.UserService;
 import com.eci.cosw.easyaccess.util.RetrofitHttp;
 import com.google.android.gms.tasks.Continuation;
@@ -73,6 +75,11 @@ import java.util.concurrent.Executors;
 
 public class TextRecognition {
     private static final String TAG = "TextRecognition";
+    private final String email;
+    private final String pass;
+    private final String phone;
+    private final String country;
+
     private ImageView mImageView;
     private Button mTextButton;
     private Button mFaceButton;
@@ -88,6 +95,11 @@ public class TextRecognition {
     public String name;
     public String identification;
     public List<FirebaseVisionText.TextBlock> blocks;
+    private RetrofitHttp retrofitHttp;
+    private UserService userService;
+
+    private final ExecutorService executorService =
+            Executors.newFixedThreadPool(1);
 
     /**
      * Name of the model file hosted with Firebase.
@@ -135,22 +147,53 @@ public class TextRecognition {
      */
     private FirebaseModelInputOutputOptions mDataOptions;
 
-    public TextRecognition() {
 
+    public TextRecognition(String email, String password, String phone, String country) {
         initCustomModel();
+        this.email = email;
+        this.pass = password;
+        this.phone = phone;
+        this.country = country;
     }
 
     public void runTextRecognition(Bitmap documentId) {
         FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(documentId);
         FirebaseVisionTextRecognizer recognizer = FirebaseVision.getInstance()
                 .getOnDeviceTextRecognizer();
-
+        String p;
         recognizer.processImage(image)
                 .addOnSuccessListener(
                         new OnSuccessListener<FirebaseVisionText>() {
                             @Override
                             public void onSuccess(FirebaseVisionText texts) {
+
+                                retrofitHttp = new RetrofitHttp();
+                                userService = retrofitHttp.getRetrofit().create(UserService.class);
+
                                 processTextRecognitionResult(texts);
+
+                                executorService.execute(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+
+                                        String name = "Oscar";
+
+                                        User user;
+
+                                        user = new User(identification,name,email, pass, phone, country, "User");
+
+                                        try {
+
+                                            userService.createUser(user).execute();
+
+                                        } catch (IOException e) {
+
+                                        }
+
+                                    }
+                                });
+
                             }
                         })
                 .addOnFailureListener(
@@ -162,6 +205,7 @@ public class TextRecognition {
 
                             }
                         });
+
     }
 
 
@@ -175,15 +219,14 @@ public class TextRecognition {
 
         for (int i = 0; i < blocks_two.size(); i++) {
             List<FirebaseVisionText.Line> lines = blocks_two.get(i).getLines();
-
-            if (lines.toString().equals("REPUBLICA DE COLOMBIA")){
-                for (int j = 0; j < lines.size(); j++) {
-                    List<FirebaseVisionText.Element> elements = lines.get(j).getElements();
-                    Log.d("ELEMENTS", elements.toString());
+            for (int j = 0; j < lines.size(); j++) {
+                List<FirebaseVisionText.Element> elements = lines.get(j).getElements();
+                for (int k = 0; k < elements.size(); k++) {
+                    if(elements.get(k).getText().contains(".")){
+                        identification = elements.get(k).getText();
+                    }
                 }
             }
-
-
         }
     }
 

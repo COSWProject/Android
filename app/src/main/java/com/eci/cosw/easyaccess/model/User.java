@@ -5,7 +5,7 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private int mobilePhone;
+    private String mobilePhone;
     private String city;
     private String rol;
     private String cedula;
@@ -16,7 +16,7 @@ public class User {
 
     public User(String cedula, String name,
                 String email, String password,
-                int mobilePhone,  String city,
+                String mobilePhone,  String city,
                 String rol) {
         this.name = name;
         this.email = email;
@@ -51,11 +51,11 @@ public class User {
         this.password = password;
     }
 
-    public int getMobilePhone() {
+    public String getMobilePhone() {
         return mobilePhone;
     }
 
-    public void setMobilePhone(int mobilePhone) {
+    public void setMobilePhone(String mobilePhone) {
         this.mobilePhone = mobilePhone;
     }
 
