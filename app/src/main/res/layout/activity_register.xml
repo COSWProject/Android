@@ -6,6 +6,25 @@
     android:layout_height="match_parent"
     tools:context="com.eci.cosw.easyaccess.activity.RegisterActivity">
 
+    <Button
+        android:id="@+id/userRegister2"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#0d47a1"
+        android:onClick="uploadId"
+        android:text="Upload Id"
+        android:textColor="#FFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.839" />
+
     <EditText
         android:id="@+id/userEmail"
         style="@style/Base.Widget.MaterialComponents.TextInputEditText"
